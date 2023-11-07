@@ -19,7 +19,10 @@ import {
 } from "../../constants/constants";
 
 const fetchUserInt = async (userId) => {
-  return await axios.get("http://localhost:5000/getUserInterest", { userId });
+  return await axios.get(
+    "https://messenger-backend-1rb8.onrender.com/getUserInterest",
+    { userId }
+  );
 };
 
 const Home = () => {
@@ -64,9 +67,12 @@ const Home = () => {
   const { isLoading, data: data1 } = useQuery({
     queryKey: ["get-user-interest"],
     queryFn: () => {
-      return axios.get(`http://localhost:5000/getUserInterest`, {
-        params: { userId: userId },
-      });
+      return axios.get(
+        `https://messenger-backend-1rb8.onrender.com/getUserInterest`,
+        {
+          params: { userId: userId },
+        }
+      );
     },
     onSuccess: () => {
       queryClient.invalidateQueries(["search-interest"]);
@@ -92,9 +98,12 @@ const Home = () => {
   const { data: data2 } = useQuery({
     queryKey: ["search-interest"],
     queryFn: () => {
-      return axios.get(`http://localhost:5000/searchInterest`, {
-        params: { interests: InterestData?.Interests },
-      });
+      return axios.get(
+        `https://messenger-backend-1rb8.onrender.com/searchInterest`,
+        {
+          params: { interests: InterestData?.Interests },
+        }
+      );
     },
   });
 
